@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .big-btn {
+    background-color: #25D366;
+    color: white;
+    padding: 30px 60px;
+    font-size: 24px;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+  }
+
+  .big-btn:hover {
+    background-color: #128C7E;
+    transform: scale(1.05);
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <button class="big-btn" onclick="sendTime()">SEND CHECK-IN</button>
+</div>
+
+<script>
+function sendTime() {
+  const now = new Date();
+
+  // Date: 06/01/2026
+  const dateOnly = now.toLocaleDateString('en-GB');
+
+  // Time: 10:30:45 AM
+  const timeOnly = now.toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  });
+
+  const message = encodeURIComponent(
+    dateOnly + "\n" +
+    "ANURAG AM\n" +
+    "IN " + timeOnly
+  );
+
+  window.open("https://wa.me/?text=" + message, "_blank");
+}
+</script>
+
+</body>
+</html>
